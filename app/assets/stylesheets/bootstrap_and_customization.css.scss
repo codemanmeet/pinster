@@ -19,6 +19,13 @@ $jumbotron-bg: white;
      font-weight: bold;
 }
 
+@media (max-width: 450px){
+	.remove-btn-lg .btn-lg {
+		display: block;
+		font-size: 90%;
+	}
+}
+
 
 
 
