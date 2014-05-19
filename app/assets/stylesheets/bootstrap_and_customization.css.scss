@@ -25,6 +25,13 @@ $jumbotron-bg: white;
 		font-size: 90%;
 	}
 }
+@media screen and (max-device-width: 480px) and (orientation: portrait){
+  /* some CSS here */
+  	.remove-btn-lg .btn-lg {
+		display: block;
+		font-size: smaller;
+	}
+}
 
 
 
