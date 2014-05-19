@@ -19,19 +19,13 @@ $jumbotron-bg: white;
      font-weight: bold;
 }
 
-/*@media (max-width: 480px){
+@media (max-width: 568px){
 	.remove-btn-lg .btn-lg {
 		display: block;
 		font-size: 90%;
 	}
-}*/
-@media only screen and (max-device-width: 480px), only screen and (min-device-width: 560px) and (max-device-width: 1136px) and (-webkit-min-device-pixel-ratio: 2) {
-	.remove-btn-lg .btn-lg {
-		display: block;
-		font-size: 0.8em;
-	}
-    /* iPhone only */
 }
+
 
 
 
