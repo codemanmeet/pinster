@@ -1,45 +1,18 @@
-<div class="jumbotron">
-<form role="form">
-<div class="panel panel-default">
-<div class="panel-heading">
 <h2>Sign up</h2>
-</div>
-<div class="panel-body">
+
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
-<div class="form-group">
+
   <div><%= f.label :email %><br />
-  <%= f.email_field :email, autofocus: true, class:"form-control" %></div>
-</div>
-<div class="form-group">
+  <%= f.email_field :email, autofocus: true %></div>
+
   <div><%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off", class:"form-control"  %></div>
-</div>
-<div class="form-group">
+    <%= f.password_field :password, autocomplete: "off" %></div>
+
   <div><%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off", class:"form-control" %></div>
-</div>
+    <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
 
-<div class="jquery-btn-block"><%= f.submit "Sign up", class: "btn btn-primary" %></div>
+  <div><%= f.submit "Sign up" %></div>
 <% end %>
-</div>
-<div class="panel-footer container"><%= render "devise/shared/links"%></div>
-</div>
-</form>
-</div>
 
-<script>
-function checkWindowSize() {
-
-    if ( $(window).width() < 568 ) {
-        $('div').last().addClass('center');
-        $('.jquery-btn-block').addClass('center');
-    }
-    else {
-    	$('div').last().removeClass('center');
-    	$('.jquery-btn-block').removeClass('center');
-	}
-}
-$(window).load(checkWindowSize);
-$(window).resize(checkWindowSize);
-</script>
+<%= render "devise/shared/links" %>
