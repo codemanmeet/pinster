@@ -20,10 +20,26 @@
     <%= f.password_field :password_confirmation, autocomplete: "off", class:"form-control" %></div>
 </div>
 
-<div><%= f.submit "Sign up", class: "btn btn-primary" %></div>
+<div class="jquery-btn-block"><%= f.submit "Sign up", class: "btn btn-primary" %></div>
 <% end %>
 </div>
+<div class="panel-footer container"><%= render "devise/shared/links"%></div>
 </div>
-<!--<div class="container"><button class="btn btn-default"><%= render "devise/shared/links"%></button></div>-->
 </form>
 </div>
+
+<script>
+function checkWindowSize() {
+
+    if ( $(window).width() < 568 ) {
+        $('div').last().addClass('center');
+        $('.jquery-btn-block').addClass('center');
+    }
+    else {
+    	$('div').last().removeClass('center');
+    	$('.jquery-btn-block').removeClass('center');
+	}
+}
+$(window).load(checkWindowSize);
+$(window).resize(checkWindowSize);
+</script>
