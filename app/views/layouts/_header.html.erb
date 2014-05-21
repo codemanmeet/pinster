@@ -17,9 +17,14 @@
       <li><%= link_to root_path do %> <i class="fa fa-home">&nbsp;Home</i> <% end %></li>
       <li><%= link_to about_path do %> <i class="fa fa-pencil">&nbsp;About</i> <% end %></li> 
       <% if user_signed_in? %>
+      <li><%= link_to edit_user_registration_path do %> <i class="fa fa-cog">&nbsp;Account Settings</i> <% end %></li>
       <li><%= link_to destroy_user_session_path, method: :delete do %> <i class="fa fa-sign-out">&nbsp;Logout</i> <% end %></li>
       <% else %>
-      <li><%= link_to new_user_session_path do %> <i class="fa fa-sign-out">&nbsp;Sign in</i> <% end %></li>
+      <% if current_page?(:controller => 'devise/sessions', :action => 'new') %>
+      <li><%= link_to new_user_registration_path do %> <i class="fa fa-sign-in">&nbsp;Sign up</i> <% end %></li>
+      <% else %>
+      <li><%= link_to new_user_session_path do %> <i class="fa fa-sign-in">&nbsp;Sign in</i> <% end %></li>
+      <% end %>
       <% end %>
     </ul>
   </div><!-- /.navbar-collapse -->
