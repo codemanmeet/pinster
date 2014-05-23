@@ -27,7 +27,7 @@ gem 'bootstrap-sass'
 gem 'font-awesome-rails'
 gem 'devise', '~> 3.2.4'
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
-gem 'aws-sdk', '~> 1.20.0'
+gem 'aws-sdk', '~> 1.41.0'
 
 group :development, :test do
      gem 'sqlite3'
