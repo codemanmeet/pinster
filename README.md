@@ -1,5 +1,3 @@
-# Pinster
-
 [*Pinster*](http://pinster.herokuapp.com/) - A rendition of Pinterest
 =========
 Built using Ruby on Rails. This is my first rails project! The gems I used are - 
