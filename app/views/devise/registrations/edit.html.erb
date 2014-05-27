@@ -8,7 +8,7 @@
   <%= devise_error_messages! %>
   <div class="form-group">
   <div><%= f.label :email %><br />
-  <%= f.email_field :email, autofocus: true, class:"form-control"%></div>
+  <%= f.email_field :email, autofocus: true, class:"form-control", disabled: true%></div>
 </div>
 <div class="form-group">
   <div><%= f.label :name %><br />
@@ -18,16 +18,21 @@
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
 <div class="form-group">
-  <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off", class:"form-control" %></div>
-</div>
-<div class="form-group">
-  <div><%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off", class:"form-control" %></div>
-</div>
-<div class="form-group">
   <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
     <%= f.password_field :current_password, autocomplete: "off", class:"form-control" %></div>
+</div>
+<div class="form-group">
+  <div><%= f.label :new_password %> <i>(leave blank if you don't want to change your current password)</i><br />
+    <%= f.password_field :new_password, autocomplete: "off", class:"form-control" %></div>
+</div>
+<div class="form-group">
+  <div><%= f.label :new_password_confirmation %> <i>(leave blank if you don't want to change your current password)</i><br />
+    <%= f.password_field :new_password_confirmation, autocomplete: "off", class:"form-control" %></div>
+</div>
+<div class="form-group">
+  <select class="form-group" name = "user[subscription_type]">
+    <%= options_for_select([['Select Subscription type',''],['Gold', 'Gold'], ['Silver', 'Silver'],['Platinum', 'Platinum']], @user.subscription_type) %>
+  </select>
 </div>
   <div><%= f.submit "Update", class:"btn btn-primary"%></div>
 <% end %>
