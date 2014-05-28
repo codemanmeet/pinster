@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  
   resources :pins
 
   devise_for :users
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   root "pins#index"
   get "about" => "pages#about"
   # The priority is based upon order of creation: first created -> highest priority.
