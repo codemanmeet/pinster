@@ -34,6 +34,14 @@ gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 gem 'rails_admin', '~> 0.6.2'
 
+group :test do
+	gem "capybara"
+	gem 'cucumber-rails', require: false
+	gem "rspec"
+	gem "poltergeist"
+	gem "selenium-webdriver"
+	gem 'database_cleaner'
+end
 
 group :development, :test do
      gem 'sqlite3'
