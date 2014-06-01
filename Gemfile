@@ -33,6 +33,7 @@ gem 'masonry-rails', '~> 0.2.0'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 gem 'rails_admin', '~> 0.6.2'
+gem "factory_girl_rails", "~> 4.0"
 
 group :test do
 	gem "capybara"

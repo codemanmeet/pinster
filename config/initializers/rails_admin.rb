@@ -17,11 +17,16 @@ RailsAdmin.config do |config|
 
   ### More at https://github.com/sferik/rails_admin/wiki/Base-configuration
   config.authorize_with do |controller|
-    unless user_signed_in? && current_user.admin?
-      flash[:error] = "You are not an admin!"
+      if !user_signed_in?
+      flash[:error] = "You have not signed in as an admin!"
       redirect_to main_app.new_user_session_url 
+      end
+
+      if user_signed_in? && !current_user.admin?
+      flash[:error] = "You are not an admin!"
+      redirect_to main_app.pins_url  
+      end
     end
-  end
   config.actions do
     dashboard                     # mandatory
     index                         # mandatory

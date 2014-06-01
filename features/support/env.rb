@@ -14,8 +14,8 @@ if ENV['IN_BROWSER']
   # On demand: non-headless tests via Selenium/WebDriver
   # To run the scenarios in browser (default: Firefox), use the following command line:
   #IN_BROWSER=true bundle exec cucumber
-  # or (to have a pause of 1 second between each step):
-  #IN_BROWSER=true PAUSE=1 bundle exec cucumber
+  # or (to have a pause of 4 seconds between each step):
+  #IN_BROWSER=true PAUSE=4 bundle exec cucumber
   Capybara.default_driver = :selenium
   AfterStep do
     sleep (ENV['PAUSE'] || 0).to_i
@@ -28,7 +28,6 @@ else
          :js_errors => false,
         :timeout => 120,
         :debug => false,
-        :phantomjs_options => ['--load-images=no', '--disk-cache=false'],
         :inspector => true,
     )
   end
@@ -36,6 +35,7 @@ else
   Capybara.javascript_driver = :poltergeist
 end
 
+World(FactoryGirl::Syntax::Methods)
 # Capybara defaults to CSS3 selectors rather than XPath.
 # If you'd prefer to use XPath, just uncomment this line and adjust any
 # selectors in your step definitions to use the XPath syntax.
@@ -61,7 +61,10 @@ ActionController::Base.allow_rescue = false
 # Remove/comment out the lines below if your app doesn't have a database.
 # For some databases (like MongoDB and CouchDB) you may need to use :truncation instead.
 begin
-  DatabaseCleaner.strategy = :transaction
+  require 'database_cleaner'
+  require 'database_cleaner/cucumber'
+  DatabaseCleaner[:active_record].strategy = :truncation
+  #DatabaseCleaner.strategy = :transaction
 rescue NameError
   raise "You need to add database_cleaner to your Gemfile (in the :test group) if you wish to use it."
 end
@@ -80,7 +83,15 @@ end
 #     DatabaseCleaner.strategy = :transaction
 #   end
 #
+# start up cleaning for capybara tests
+Before do
+  DatabaseCleaner.start
+end
 
+# clean up factory girl models after scenario has been executed
+After do |scenario|
+  DatabaseCleaner.clean
+end
 # Possible values are :truncation and :transaction
 # The :transaction strategy is faster, but might give you threading problems.
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
