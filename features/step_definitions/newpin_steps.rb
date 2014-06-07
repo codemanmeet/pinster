@@ -1,6 +1,6 @@
 
 Given(/^I am a new authenticated user$/) do
-	@user = create(:user)
+	@user = create_user #method defined in factories.rb
 end
 
 When(/^I click on sign in on the home page$/) do
@@ -10,9 +10,7 @@ end
 
 When(/^I fill up my details on the sign in page$/) do
   fill_in "Email", :with => @user.email
-  sleep(4)
   fill_in "Password", :with => @user.password
-  sleep(3)
   click_button('Sign in')
 end
 

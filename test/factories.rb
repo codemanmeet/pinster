@@ -9,3 +9,8 @@ FactoryGirl.define do
   end
 end
 
+def create_user
+	return create(:user)
+end
+
+
