@@ -1,0 +1,40 @@
+%nav.navbar.navbar-static-top.navbar-default{role: "navigation"}
+  / Brand and toggle get grouped for better mobile display
+  .container
+    .navbar-header
+      %button.navbar-toggle{"data-target" => ".navbar-ex1-collapse", "data-toggle" => "collapse", type: "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      = link_to "Pinster", root_path, class: "navbar-brand"
+    / Collect the nav links, forms, and other content for toggling
+    .collapse.navbar-collapse.navbar-ex1-collapse
+      %ul.nav.navbar-nav.navbar-right
+        %li
+          = link_to root_path do
+            %i.fa.fa-home  Home
+        %li
+          = link_to about_path do
+            %i.fa.fa-pencil  About
+        - if user_signed_in?
+          %li
+            = link_to new_pin_path do
+              %i.fa.fa-plus  New Pin
+          %li
+            = link_to edit_user_registration_path do
+              %i.fa.fa-cog  Account Settings
+          %li
+            = link_to destroy_user_session_path, method: :delete do
+              %i.fa.fa-sign-out  Logout
+        - else
+          - if current_page?(:controller => 'devise/sessions', :action => 'new')
+            %li
+              = link_to new_user_registration_path do
+                %i.fa.fa-sign-in  Sign up
+          - else
+            %li
+              = link_to new_user_session_path do
+                %i.fa.fa-sign-in  Sign in
+    / /.navbar-collapse
+  / /.container
