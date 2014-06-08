@@ -1,5 +1,4 @@
 
-EMPTY = ''
 When(/^I click on "(.*?)"$/) do |sign_in_link|
   click_link sign_in_link
 end
