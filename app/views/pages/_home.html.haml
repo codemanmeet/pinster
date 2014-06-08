@@ -1,0 +1,8 @@
+.jumbotron.center
+  %h1
+    Welcome to
+    %span{style: "color: #c0392b"} Pinster
+  %p
+    %a.btn.btn-primary.btn-lg{href: "/users/sign_in"}
+      %i.fa.fa-user  Login
+    = link_to "Sign up", new_user_registration_path, class:"btn btn-default btn-lg"
