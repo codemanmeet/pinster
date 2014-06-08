@@ -1,0 +1,23 @@
+= render 'pages/home' unless user_signed_in?
+#pins.transitions-enabled
+  - @pins.each do |pin|
+    .box.panel.panel-default
+      = link_to image_tag(pin.image.url(:medium)), pin
+      .panel-body
+        %p= pin.description
+        %p
+          %strong= pin.user.name if pin.user
+          - if pin.user
+            - unless pin.user.subscription_type == ""
+              %i{style: "font-size: 12px;"}
+                (#{pin.user.subscription_type})
+        - if current_user && pin.user == current_user
+          .actions
+            = link_to edit_pin_path(pin) do
+              %span.glyphicon.glyphicon-edit
+              Edit
+            = link_to pin, method: :delete, data: { confirm: 'Are you sure?' } do
+              %span.glyphicon.glyphicon-trash
+              Delete
+.center
+  = will_paginate @posts, renderer: BootstrapPagination::Rails
