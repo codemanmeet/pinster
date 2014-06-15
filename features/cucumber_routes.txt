@@ -1,0 +1,2 @@
+bundle exec cucumber features/check_home_page_rendering.feature
+IN_BROWSER=true bundle exec cucumber features/check_for_image_presence.feature
