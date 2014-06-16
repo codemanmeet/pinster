@@ -1,10 +1,8 @@
 When(/^I click on Manmeet's pic$/) do
   @pin = create(:pin)
-  @pin2 = create(:pin, :image => fixture_file_upload("shraddha-kapoor_2.jpg",'image/jpg'), :user => @pin.user)
-  sleep(10)
+  @pin2 = create(:pin, :image => fixture_file_upload("shahrukhkhan-jan30.jpg",'image/jpg'), :user => @pin.user, :description => "Shahrukh Khan")
   visit root_path
   click_link 'Manmeet pic'
-  sleep(10)
 end
 
 When(/^I see the link for Back$/) do

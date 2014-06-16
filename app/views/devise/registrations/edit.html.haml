@@ -1,0 +1,48 @@
+.jumbotron
+  .panel.panel-default
+    .panel-heading
+      %h2
+        Edit #{resource_name.to_s.humanize}
+    .panel-body
+      = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+        = devise_error_messages!
+        .form-group
+          %div
+            = f.label :email
+            %br/
+            = f.email_field :email, autofocus: true, class:"form-control", disabled: true
+        .form-group
+          %div
+            = f.label :name
+            %br/
+            = f.text_field :name, autofocus: true, class:"form-control"
+        - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+          %div
+            Currently waiting confirmation for: #{resource.unconfirmed_email}
+        .form-group
+          %div
+            = f.label :current_password
+            %i (we need your current password to confirm your changes)
+            %br/
+            = f.password_field :current_password, autocomplete: "off", class:"form-control"
+        .form-group
+          %div
+            = f.label :new_password
+            %i (leave blank if you don't want to change your current password)
+            %br/
+            = f.password_field :new_password, autocomplete: "off", class:"form-control"
+        .form-group
+          %div
+            = f.label :new_password_confirmation
+            %i (leave blank if you don't want to change your current password)
+            %br/
+            = f.password_field :new_password_confirmation, autocomplete: "off", class:"form-control"
+        .form-group
+          %select.form-group{name: "user[subscription_type]"}= options_for_select([['Select Subscription type',''],['Gold', 'Gold'], ['Silver', 'Silver'],['Platinum', 'Platinum']], @user.subscription_type)
+        %div= f.submit "Update", class:"btn btn-primary"
+    .panel-footer
+      %h3 Cancel my account
+      %i{style: "font-size: 15px;"} Unhappy?
+      = link_to registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete do
+        %button.btn.btn-warning{style: "margin-right: 0.5%"} Cancel my account
+      = link_to "Back", :back
